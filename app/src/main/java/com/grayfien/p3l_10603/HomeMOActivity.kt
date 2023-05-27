@@ -10,17 +10,15 @@ import androidx.fragment.app.Fragment
 import com.grayfien.p3l_10603.fragment.FragmentHome
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
-class HomeActivity : AppCompatActivity() {
-
-
+class HomeMOActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home_moactivity)
         val id_user = intent.extras?.getInt("id_user_login",0)
 
-        Log.d("idUserHome", "Received id_user_login: $id_user")
+        Log.d("idUserHomeMO", "Received id_user_login: $id_user")
 
-          val firstFragment = FragmentHome()
+        val firstFragment = FragmentHome()
 //        val secondFragment = FragmentPasien()
 //        val thirdFragment = FragmentUser()
 //        val fourthFragment = FragmentObat()
@@ -50,10 +48,10 @@ class HomeActivity : AppCompatActivity() {
                     R.id.tab_home -> setCurrentFragment(firstFragment)
 
                     //R.id.tab_pasien -> setCurrentFragment(secondFragment)
-//                    R.id.tab_pasien -> {
-//                        val intent = Intent(this@HomeActivity, PasienActivity::class.java)
-//                        startActivity(intent)
-//                    }
+                    R.id.tab_presensi_instruktur -> {
+                        val intent = Intent(this@HomeMOActivity, PresensiInstrukturActivity::class.java)
+                        startActivity(intent)
+                    }
 
 //                    R.id.tab_obat -> {
 //                        val intent = Intent(this@HomeActivity, ObatActivity::class.java)
@@ -72,7 +70,7 @@ class HomeActivity : AppCompatActivity() {
 //                    }
 
                     R.id.logout -> {
-                        val builder: AlertDialog.Builder = AlertDialog.Builder(this@HomeActivity)
+                        val builder: AlertDialog.Builder = AlertDialog.Builder(this@HomeMOActivity)
                         builder.setMessage("Are you sure want to exit?")
                             .setPositiveButton("YES", object : DialogInterface.OnClickListener {
                                 override fun onClick(dialogInterface: DialogInterface, i: Int) {

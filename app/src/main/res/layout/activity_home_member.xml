@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".HomeMemberActivity">
 
     <FrameLayout
         android:id="@+id/layout_fragment"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:abb_animationInterpolator="@android:anim/overshoot_interpolator"
-        app:abb_tabs="@menu/tabs"
+        app:abb_tabs="@menu/tabsmember"
         app:abb_badgeBackgroundColor="#5A33A0"
         app:abb_iconSize="26dp"
         app:abb_indicatorColor="#8C71BD"

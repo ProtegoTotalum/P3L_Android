@@ -8,20 +8,23 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.grayfien.p3l_10603.fragment.FragmentHome
+import com.grayfien.p3l_10603.fragment.FragmentMember
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
-class HomeActivity : AppCompatActivity() {
+class HomeMemberActivity : AppCompatActivity() {
 
+    private var id_user_login: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-        val id_user = intent.extras?.getInt("id_user_login",0)
+        setContentView(R.layout.activity_home_member)
 
-        Log.d("idUserHome", "Received id_user_login: $id_user")
+        id_user_login = intent.extras!!.getInt("id_user_login",0)
 
-          val firstFragment = FragmentHome()
-//        val secondFragment = FragmentPasien()
+        Log.d("idUserHomeMember", "Received id_user_login: $id_user_login")
+
+        val firstFragment = FragmentHome()
+        val secondFragment = FragmentMember()
 //        val thirdFragment = FragmentUser()
 //        val fourthFragment = FragmentObat()
 
@@ -29,17 +32,17 @@ class HomeActivity : AppCompatActivity() {
         setCurrentFragment(firstFragment)
 
 
-        val bottomNavigationView =
+        val bottomNavigationViewMember =
             findViewById<AnimatedBottomBar>(R.id.bottomNavigationView)
 
-        bottomNavigationView.onTabSelected = {
+        bottomNavigationViewMember.onTabSelected = {
             Log.d("bottomNavigationView", "Selected tab: " + it.title)
         }
-        bottomNavigationView.onTabReselected = {
+        bottomNavigationViewMember.onTabReselected = {
             Log.d("bottomNavigationView", "Reselected tab: " + it.title)
         }
 
-        bottomNavigationView.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
+        bottomNavigationViewMember.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
                 lastIndex: Int,
                 lastTab: AnimatedBottomBar.Tab?,
@@ -49,9 +52,9 @@ class HomeActivity : AppCompatActivity() {
                 when(newTab.id) {
                     R.id.tab_home -> setCurrentFragment(firstFragment)
 
-                    //R.id.tab_pasien -> setCurrentFragment(secondFragment)
-//                    R.id.tab_pasien -> {
-//                        val intent = Intent(this@HomeActivity, PasienActivity::class.java)
+                    R.id.tab_profil_member -> setCurrentFragment(secondFragment)
+//                    R.id.tab_profil_member -> {
+//                        val intent = Intent(this@HomeMemberActivity, PresensiInstrukturActivity::class.java)
 //                        startActivity(intent)
 //                    }
 
@@ -72,7 +75,7 @@ class HomeActivity : AppCompatActivity() {
 //                    }
 
                     R.id.logout -> {
-                        val builder: AlertDialog.Builder = AlertDialog.Builder(this@HomeActivity)
+                        val builder: AlertDialog.Builder = AlertDialog.Builder(this@HomeMemberActivity)
                         builder.setMessage("Are you sure want to exit?")
                             .setPositiveButton("YES", object : DialogInterface.OnClickListener {
                                 override fun onClick(dialogInterface: DialogInterface, i: Int) {
@@ -92,4 +95,8 @@ class HomeActivity : AppCompatActivity() {
             replace(R.id.layout_fragment, fragment)
             commit()
         }
+
+    fun getIdUserLogin(): Int? {
+        return id_user_login
+    }
 }

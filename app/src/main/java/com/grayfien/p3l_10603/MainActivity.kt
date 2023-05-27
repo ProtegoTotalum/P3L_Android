@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
                 FancyToast.makeText(this@MainActivity, "Password tidak boleh kosong!", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show()
             }else{
                 login()
-
             }
         })
         //getBundle()
@@ -83,13 +82,30 @@ class MainActivity : AppCompatActivity() {
                     val idUserLogin = login.user?.id_user_login
                     val role = login.user?.role
                     Log.d("cek", "id_user_login: $idUserLogin")
+                    Log.d("cek", "role: $role")
                     if (role != "member" && role != "instruktur" && role != "mo"){
                         FancyToast.makeText(this@MainActivity, "Sorry You Don't Have Access To Login", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show()
                     }else{
-                        val moveHome = Intent(
-                            this@MainActivity, HomeActivity::class.java
-                        ).apply { putExtra("id_user_login",  idUserLogin) }
-                        startActivity(moveHome)
+                        if(role == "member"){
+                            val moveHome = Intent(
+                                this@MainActivity, HomeMemberActivity::class.java
+                            ).apply { putExtra("id_user_login",  idUserLogin) }
+                            startActivity(moveHome)
+                        }else{
+                            if(role == "instruktur"){
+                                val moveHome = Intent(
+                                    this@MainActivity, HomeActivity::class.java
+                                ).apply { putExtra("id_user_login",  idUserLogin) }
+                                startActivity(moveHome)
+                            }else{
+                                if(role == "mo"){
+                                    val moveHome = Intent(
+                                        this@MainActivity, HomeMOActivity::class.java
+                                    ).apply { putExtra("id_user_login",  idUserLogin) }
+                                    startActivity(moveHome)
+                                }
+                            }
+                        }
                     }
                 }else{
                     FancyToast.makeText(
