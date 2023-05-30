@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_home_24" />
 
     <item
-        android:id="@+id/tab_booking_kelas"
+        android:id="@+id/tab_profil_instruktur"
         android:icon="@drawable/ic_class_24"
-        android:title="Booking Kelas" />
+        android:title="Profil" />
 
     <item
         android:id="@+id/logout"

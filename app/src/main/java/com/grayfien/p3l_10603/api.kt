@@ -48,4 +48,7 @@ interface api {
 
     @GET("api/getdepositkelas/{id}")
     fun getDataDepositKelas(@Path("id") id: Int?): Call<ResponseDataDepositKelas>?
+
+    @GET("api/getinstruktur/{id}")
+    fun getDataInstruktur(@Path("id") id: Int): Call<ResponseDataInstruktur>?
 }

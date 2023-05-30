@@ -8,20 +8,23 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.grayfien.p3l_10603.fragment.FragmentHome
+import com.grayfien.p3l_10603.fragment.FragmentInstruktur
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class HomeActivity : AppCompatActivity() {
 
+    private var id_user_login: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        val id_user = intent.extras?.getInt("id_user_login",0)
 
-        Log.d("idUserHome", "Received id_user_login: $id_user")
+        id_user_login = intent.extras!!.getInt("id_user_login",0)
+
+        Log.d("idUserHome", "Received id_user_login: $id_user_login")
 
           val firstFragment = FragmentHome()
-//        val secondFragment = FragmentPasien()
+          val secondFragment = FragmentInstruktur()
 //        val thirdFragment = FragmentUser()
 //        val fourthFragment = FragmentObat()
 
@@ -49,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
                 when(newTab.id) {
                     R.id.tab_home -> setCurrentFragment(firstFragment)
 
-                    //R.id.tab_pasien -> setCurrentFragment(secondFragment)
+                    R.id.tab_profil_instruktur -> setCurrentFragment(secondFragment)
 //                    R.id.tab_pasien -> {
 //                        val intent = Intent(this@HomeActivity, PasienActivity::class.java)
 //                        startActivity(intent)
@@ -92,4 +95,8 @@ class HomeActivity : AppCompatActivity() {
             replace(R.id.layout_fragment, fragment)
             commit()
         }
+
+    fun getIdUserLogin(): Int? {
+        return id_user_login
+    }
 }
